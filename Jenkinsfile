@@ -22,11 +22,11 @@ pipeline {
            
         stage("terraform setup"){
             steps {
-               dir("terraform657"){
-                   bat 'terraform init'
-                   bat 'terraform plan -out=tfplan'
-                   bat 'terraform apply -auto-approve tfplan'
-               }
+               dir("terraform657") {
+                  bat 'terraform init'
+                  bat 'terraform plan -out=tfplan -var="deployment_slot_name=staging"'
+                  bat 'terraform apply -auto-approve tfplan'
+                 }
 
             }
         }
