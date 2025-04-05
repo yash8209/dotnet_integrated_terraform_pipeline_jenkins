@@ -33,10 +33,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'dotnet restore'
-                bat 'dotnet build --configuration Release'
+                dir('pipeline_ex') {
+                bat 'dotnet restore pipeline_ex.sln'
+                bat 'dotnet build pipeline_ex.sln'
                 bat 'dotnet publish -c Release -o ./publish'
-            }
+                }
+            }     
         }
 
         stage('Deploy') {
